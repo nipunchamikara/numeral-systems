@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load React. -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@7.0.0-beta.3/babel.js"></script>
+    <!-- Cascadia Code font. -->
+    <link href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css" rel="stylesheet"> 
+    <!-- Bootstrap CSS. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Custom -->
+    <link href="static/style.css" rel="stylesheet">
+    <title>Numeral Systems Conversion</title>
+	</head>
+	<body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          
+          this.state = {
+            decimal: 0,
+            octal: "0",
+            hexadecimal: "0",
+            binary: "0"
+          };
+        }
+        updateValues(value, radix) {
+          let decimal = parseInt(value, radix);
+          if (!decimal) {
+            decimal = 0;
+          }
+          this.setState({
+            "decimal": decimal,
+            "octal": decimal.toString(8),
+            "hexadecimal": decimal.toString(16),
+            "binary": decimal.toString(2)
+          })
+        }
+        copyToClipboard(value) {
+          const copyTextArea = document.querySelector("textarea");
+          copyTextArea.textContent = value;
+          copyTextArea.select();
+          document.execCommand("copy");
+        }
+        render() {
+          return (
+            <div id="component-list">
+              <div id="decimal" className="component-field col-12 col-sm-8">
+                <h6>Decimal</h6>
+                <input onChange={e => this.updateValues(e.target.value, 10)} type="text" value={this.state.decimal} />
+                <p onMouseUp={() => this.copyToClipboard(this.state.decimal)}>Copy to Clipboard</p>
+              </div>
+              <div id="octal" className="component-field col-12 col-sm-8">
+                <h6>Octal</h6>
+                <input onChange={e => {this.updateValues(e.target.value, 8)}} type="text" value={this.state.octal} />
+                <p onMouseUp={() => this.copyToClipboard(this.state.octal)}>Copy to Clipboard</p>
+              </div>
+              <div id="hexadecimal" className="component-field col-12 col-sm-8">
+                <h6>Hexadecimal</h6>
+                <input onChange={e => {this.updateValues(e.target.value, 16)}} type="text" value={this.state.hexadecimal.toUpperCase()} />
+                <p onMouseUp={() => this.copyToClipboard(this.state.hexadecimal)}>Copy to Clipboard</p>
+              </div>
+              <div id="binary" className="component-field col-12 col-sm-8">
+                <h6>Binary</h6>
+                <input onChange={e => {this.updateValues(e.target.value, 2)}} type="text" value={this.state.binary} />
+                <p onMouseUp={() => this.copyToClipboard(this.state.binary)}>Copy to Clipboard</p>
+              </div>
+              <textarea></textarea>
+            </div>
+          );
+        }
+      }
+      
+      ReactDOM.render(<App />, document.getElementById("app"));
+	  </script>
+  </body>
+</html>
