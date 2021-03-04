@@ -1,4 +1,7 @@
+/* Gradients generated using https://cssgradient.io/ */
+
 body {
+    background: rgb(57,57,201);
     background: linear-gradient(90deg, rgb(57, 107, 201) 0%, rgba(0,212,255,1) 100%);
 }
 
@@ -7,6 +10,31 @@ html, body, #app {
     height: 100vh;
 }
 
+/* Navbar */
+.navbar {
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    transition: 0.2s;
+}
+.navbar:hover {
+    box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
+/*
+    Navbar title (brand)
+    Text gradient: Stephen Castle - https://codeworkshop.dev/blog/2020-08-13-how-to-add-a-gradient-to-text-with-css/
+*/
+.navbar-brand {
+    background: rgb(16,16,119);
+    background: linear-gradient(31deg, rgba(16,16,119,1) 0%, rgba(0,104,125,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Component List */
 #component-list {
     display: flex;
     flex-direction: column;
@@ -16,17 +44,17 @@ html, body, #app {
     height: auto;
 }   
 
+/* Component Field */
 .component-field {
     background-color: #002446ce;
     padding: 15px;
     margin: 3px;
-    transition: 0.3s;
+    transition: 0.2s;
 }
-
 .component-field:hover {
     background-color: #001c38;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
 }
-
 .component-field > input {
     border: none;
     border-bottom: 4px solid #ffffff00;
@@ -34,21 +62,18 @@ html, body, #app {
     margin-bottom: 2px;
     outline: none;  
     background: none;
-    transition: border-width 0.1s, border-color 0.5s;
+    transition: 0.2s;
     color: white;
     font-size: 40px;
     font-family: 'Cascadia Code', sans-serif;
 }
-
 .component-field > input:focus {
     border: none;
     border-bottom: 4px solid white;
 }
-
 .component-field > h6 {
     color: rgb(255, 255, 255);
 }
-
 .component-field > p {
     float: right;
     margin: 0;
@@ -57,15 +82,29 @@ html, body, #app {
     color: white;
     cursor: pointer;
 }
-
 .component-field > p:hover {
     text-decoration: underline;
 }
 
+/* Textarea to implement copy to clipboard*/
 textarea {
     position: fixed;
     opacity: 0;
     height: 0;
     margin: 0;
     padding: 0;
+}
+
+/* Created by */
+#created-by {
+    text-align: center;
+    width: 100%;
+    color: black;
+}
+#created-by > a {
+    color: rgb(0, 0, 0);
+    transition: 0.2s;
+}
+#created-by > a:hover {
+    color: rgb(0, 12, 116);
 }
