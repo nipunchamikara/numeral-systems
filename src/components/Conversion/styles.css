@@ -1,0 +1,71 @@
+.conversion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.field-group-wrapper {
+  width: 75%;
+}
+
+@media screen and (max-width: 900px) {
+  .field-group-wrapper {
+    width: 90%;
+  }
+}
+
+.field-group {
+  margin: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 2rem;
+  transition: background 0.3s;
+}
+.field-group:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.field-group-label {
+  font-weight: 600;
+}
+
+.field-group-input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  color: white;
+  font-family: "Cascadia Code", sans-serif;
+  font-size: 2.5rem;
+  margin: 1rem 0rem;
+  width: calc(100% - 3rem);
+}
+
+.field-group-input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.field-group-input-wrapper::after {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 0.25rem;
+  background-color: white;
+  left: 0;
+  bottom: 0.5rem;
+  transition: width 0.3s;
+}
+
+.field-group-input-wrapper:focus-within:after {
+  width: calc(100% - 3rem);
+}
+
+.field-group-clipboard {
+  font-size: 3rem;
+  cursor: pointer;
+}
