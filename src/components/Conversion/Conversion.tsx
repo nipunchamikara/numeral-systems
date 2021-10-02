@@ -26,7 +26,7 @@ const Conversion: React.FC = () => {
    * @param radix Base of value
    */
   const updateValues = (value: string, radix: number): void => {
-    let decimal = parseInt(value, radix) || "0";
+    const decimal: number = parseInt(value, radix) || 0;
     setNumeral(
       fields.map((field) => decimal.toString(field.radix).toUpperCase())
     );

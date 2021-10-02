@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HiClipboardCopy as ClipboardStandby,
   HiClipboardCheck as ClipboardSuccess,
@@ -27,6 +27,11 @@ const FieldGroup: React.FC<Props> = ({ label, value, radix, handleChange }) => {
     <ClipboardFailure title="Failed to copy" />,
   ];
 
+  // Resets clipboard to standby when there is a change in value
+  useEffect(() => {
+    setClipboard(Status.Standby);
+  }, [value, Status.Standby]);
+
   /**
    * Copies numeral string to clipboard
    * @param value Numeral string/value
@@ -45,15 +50,14 @@ const FieldGroup: React.FC<Props> = ({ label, value, radix, handleChange }) => {
   return (
     <div className="field-group">
       <div className="field-group-label">{label}</div>
-      <div className="field-group-input-wrapper">
-        <input
-          className="field-group-input"
-          value={value}
-          onChange={(event) => {
-            setClipboard(Status.Standby);
-            handleChange(event.target.value, radix);
-          }}
-        />
+      <div className="field-group-input-clipboard-wrapper">
+        <div className="field-group-input-wrapper">
+          <input
+            className="field-group-input"
+            value={value}
+            onChange={(event) => handleChange(event.target.value, radix)}
+          />
+        </div>
         <div
           className="field-group-clipboard"
           onMouseUp={() => copyToClipboard(value)}

@@ -9,6 +9,7 @@
 
 .field-group-wrapper {
   width: 75%;
+  padding: 3rem 0rem;
 }
 
 @media screen and (max-width: 900px) {
@@ -41,31 +42,47 @@
   font-family: "Cascadia Code", sans-serif;
   font-size: 2.5rem;
   margin: 1rem 0rem;
-  width: calc(100% - 3rem);
+  width: 100%;
 }
 
-.field-group-input-wrapper {
-  position: relative;
+.field-group-input-clipboard-wrapper {
   display: flex;
   flex-direction: row;
 }
+.field-group-input-wrapper {
+  position: relative;
+  width: calc(100% - 3rem);
+}
 
+.field-group-input-wrapper::before,
 .field-group-input-wrapper::after {
   position: absolute;
   content: "";
   width: 0%;
   height: 0.25rem;
   background-color: white;
-  left: 0;
   bottom: 0.5rem;
   transition: width 0.3s;
 }
 
+.field-group-input-wrapper::before {
+  left: 50%;
+}
+.field-group-input-wrapper::after {
+  right: 50%;
+}
+
+.field-group-input-wrapper:focus-within:before,
 .field-group-input-wrapper:focus-within:after {
-  width: calc(100% - 3rem);
+  width: 50%;
 }
 
 .field-group-clipboard {
+  color: rgba(255, 255, 255, 0.8);
   font-size: 3rem;
   cursor: pointer;
+  transition: 0.3s color;
+}
+.field-group-clipboard:hover {
+  color: white;
 }
